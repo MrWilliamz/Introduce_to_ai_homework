@@ -57,7 +57,7 @@ def BGD_2(x0,d0,Pmax):
 def LSE2(x0,d0):
     X = np.column_stack([np.ones(x0.shape[0]), x0[:, 0], x0[:, 1],x0[:, 0] * x0[:, 1], x0[:, 0] ** 2, x0[:, 1] ** 2])
     #print(X)
-    beta = np.linalg.inv(X.T.dot(X)).dot(X.T).dot(d0)
+    beta = X.T.dot(np.linalg.inv(X.dot(X.T))).dot(d0)
     y_predicted = beta[0] + beta[1] + beta[2]+ beta[4] + beta[5] + beta[3]
     return  np.linalg.norm(y_predicted),beta
 
